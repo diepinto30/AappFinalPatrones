@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 
 import Clases.Cita;
@@ -24,10 +19,11 @@ public class frmCitas extends javax.swing.JFrame {
     BL.BLCitas ManejadorBL = new BL.BLCitas();
     Validaciones validar = new Validaciones();
     classFacade objFacade = objFacade = new classFacade();
-    
+
     public frmCitas() throws ClassNotFoundException, SQLException {
-        
+
         initComponents();
+        TxtBloqueados();
         this.setLocationRelativeTo(null);
         try {
             CargavaloresCitas();
@@ -36,53 +32,51 @@ public class frmCitas extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(frmCitas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="Método Limpiar">
-    public void limpiar(){
+    public void limpiar() {
         txtConsultorio.setText("");
         txtFecha.setText("");
-        txtHora.setText("");   
+        txtHora.setText("");
     }// </editor-fold> 
-    
+
     // <editor-fold defaultstate="collapsed" desc="Método Tabla1 Citas">  
     @SuppressWarnings("empty-statement")
     public void CargavaloresCitas() throws ClassNotFoundException, SQLException {
         //Como el método de la BL retorna un ArrayList de la clase Estudiantes
         //Aqui lo recuperamos
-        
-        ArrayList<Cita>lstFacCitas = ManejadorBL.ConsultarCatalogo();
 
-        Object columnas[] = {"Id Cita","Paciente", "Medico", "Consultorio", "Fecha de la consulta", "Hora"};
+        ArrayList<Cita> lstFacCitas = ManejadorBL.ConsultarCatalogo();
+
+        Object columnas[] = {"Id Cita", "Paciente", "Medico", "Consultorio", "Fecha de la consulta", "Hora"};
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
         jTable1.setModel(modelo);
 
         for (Cita objeto : lstFacCitas) {
-            //String id = String.valueOf(objeto.getIntId());
-            String strNombreP=String.valueOf(objeto.getPaciente());
-            String strNombreM=String.valueOf( objeto.getNombreD());
-            String strConsultorio=String.valueOf(objeto.getConsultorio());
-            String strFecha=String.valueOf(objeto.getFecha());
-            String strHora=String.valueOf(objeto.getHora());
-            String stridCita=String.valueOf(objeto.getIntIdCita());
+            String strNombreP = String.valueOf(objeto.getPaciente());
+            String strNombreM = String.valueOf(objeto.getNombreD());
+            String strConsultorio = String.valueOf(objeto.getConsultorio());
+            String strFecha = String.valueOf(objeto.getFecha());
+            String strHora = String.valueOf(objeto.getHora());
+            String stridCita = String.valueOf(objeto.getIntIdCita());
 
             String modeloTemp[] = {stridCita, strNombreP, strNombreM, strConsultorio, strFecha, strHora};
             modelo.addRow(modeloTemp);
         }
     }// </editor-fold> 
-    
+
     // <editor-fold defaultstate="collapsed" desc="Modificar">
-    public void Modificar(){ 
-    Cita objCitas;
+    public void Modificar() {
+        Cita objCitas;
         String strNombrePaciente = txtPaciente.getText();
         String strFecha = txtFecha.getText();
         String strHora = txtHora.getText();
         String strIdCita = txtidCitas.getText();
         String strMedico = txtMedico.getText();
         String strConsultorio = txtConsultorio.getText();
-        
-        
+
         Object[] opciones = {"Aceptar", "Cancelar"};
         int eleccion = JOptionPane.showOptionDialog(rootPane, "Desea Actualizar los datos seleccionados", "Mensaje de Confirmacion",
                 JOptionPane.YES_NO_OPTION,
@@ -93,11 +87,10 @@ public class frmCitas extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "El registro no fue modificado");
         }
-         
-        
+
     }
     // </editor-fold> 
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -122,6 +115,7 @@ public class frmCitas extends javax.swing.JFrame {
         txtMedico = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jTable1.setFont(new java.awt.Font("OCR A Std", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -143,13 +137,14 @@ public class frmCitas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(102, 102, 255));
+        jTextField1.setBackground(new java.awt.Color(0, 204, 255));
         jTextField1.setFont(new java.awt.Font("OCR A Std", 1, 24)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(51, 51, 51));
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("CITAS ACTUALES");
 
         jbtActualizar.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
+        jbtActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/reportbaby-iconos-04.png"))); // NOI18N
         jbtActualizar.setText("Actualizar Listas");
         jbtActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,6 +153,7 @@ public class frmCitas extends javax.swing.JFrame {
         });
 
         jbtModificar.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
+        jbtModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/reportbaby-iconos-04.png"))); // NOI18N
         jbtModificar.setText("Modificar");
         jbtModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -330,16 +326,17 @@ public class frmCitas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtModificar)
                     .addComponent(jButton2))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void TxtBloqueados(){
+    public void TxtBloqueados() {
         txtidCitas.setEditable(false);
+        txtPaciente.setEditable(false);
     }
-    
+
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         String strValor1 = null;
@@ -354,19 +351,19 @@ public class frmCitas extends javax.swing.JFrame {
         //Columna 0
         strValor1 = (String) jTable1.getModel().getValueAt(row, 0);
         txtidCitas.setText(strValor1);
-        
+
         strValor2 = (String) jTable1.getModel().getValueAt(row, 1);
         txtPaciente.setText(strValor2);
-        
+
         strValor3 = (String) jTable1.getModel().getValueAt(row, 2);
         txtMedico.setText(strValor3);
-        
+
         strValor4 = (String) jTable1.getModel().getValueAt(row, 3);
         txtConsultorio.setText(strValor4);
-        
+
         strValor5 = (String) jTable1.getModel().getValueAt(row, 4);
         txtFecha.setText(strValor5);
-        
+
         strValor6 = (String) jTable1.getModel().getValueAt(row, 5);
         txtHora.setText(strValor6);
         TxtBloqueados();
@@ -404,7 +401,7 @@ public class frmCitas extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(frmCitas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_jbtModificarActionPerformed
 
     private void txtConsultorioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConsultorioKeyTyped
@@ -413,17 +410,17 @@ public class frmCitas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtConsultorioKeyTyped
 
     private void txtidCitasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidCitasKeyTyped
-        
+
     }//GEN-LAST:event_txtidCitasKeyTyped
 
     private void txtidCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidCitasActionPerformed
         // TODO add your handling code here:
         TxtBloqueados();
-        
+
     }//GEN-LAST:event_txtidCitasActionPerformed
 
     private void txtPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPacienteActionPerformed
-        
+
     }//GEN-LAST:event_txtPacienteActionPerformed
 
     private void txtPacienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPacienteKeyTyped
@@ -440,7 +437,7 @@ public class frmCitas extends javax.swing.JFrame {
 
     private void txtidCitasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidCitasKeyPressed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtidCitasKeyPressed
 
     private void txtFechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFechaKeyTyped
@@ -448,7 +445,6 @@ public class frmCitas extends javax.swing.JFrame {
         validar.ForzarMayusculas(evt);
     }//GEN-LAST:event_txtFechaKeyTyped
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;

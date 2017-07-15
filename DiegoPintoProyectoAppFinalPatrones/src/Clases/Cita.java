@@ -19,11 +19,10 @@ public class Cita {
         this.Consultorio = Consultorio;
         this.paciente = paciente;
     }
-    public Cita(){
-        
-    }
 
-    
+    public Cita() {
+
+    }
 
     public int getIntId() {
         return intId;
@@ -81,5 +80,4 @@ public class Cita {
         this.paciente = paciente;
     }
 
-    
 }

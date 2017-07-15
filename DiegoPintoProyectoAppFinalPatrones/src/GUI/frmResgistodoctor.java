@@ -1,21 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 
-import Clases.Doctor;
-
 import java.util.ArrayList;
-import BL.BLDoctor;
 import Clases.Especialidades;
 import Clases.classFacade;
 import javax.swing.JOptionPane;
 import Validaciones.Validaciones;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -24,23 +14,16 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class frmResgistodoctor extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmLoing
-     */
     BL.BLDoctor ManejadorBL = new BL.BLDoctor();
-     BL.BLEspecialidades ManejadorBLEs = new BL.BLEspecialidades();
-    Validaciones validar=new Validaciones ();
+    BL.BLEspecialidades ManejadorBLEs = new BL.BLEspecialidades();
+    Validaciones validar = new Validaciones();
     classFacade objFacade = objFacade = new classFacade();
     int intIdCatalogo = 0;
-    
+
     public frmResgistodoctor() throws SQLException, ClassNotFoundException {
         initComponents();
         this.setLocationRelativeTo(null);
         CagarComboCatalogo();
-        
-        //consultar();
-        
-
     }
 
     /**
@@ -111,7 +94,8 @@ public class frmResgistodoctor extends javax.swing.JFrame {
         });
 
         btEntrar.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
-        btEntrar.setText("Enviar");
+        btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Save_37110.png"))); // NOI18N
+        btEntrar.setText("Guardar");
         btEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEntrarActionPerformed(evt);
@@ -229,7 +213,7 @@ public class frmResgistodoctor extends javax.swing.JFrame {
                     .addComponent(btEntrar))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -246,46 +230,33 @@ public class frmResgistodoctor extends javax.swing.JFrame {
     }// </editor-fold> 
 
     // <editor-fold defaultstate="collapsed" desc="Insertar base">  
-    public void Insertar(){
-        
+    public void Insertar() {
+
         int intName = txtNameD.getText().length();
         int intNumeroC = txtNumeroC.getText().length();
-        int intApellido= txtApellido.getText().length();
-        
-        
+        int intApellido = txtApellido.getText().length();
+
         String strNombre = txtNameD.getText();
         String strApellidos = txtApellido.getText();
         String intConsultorio = txtNumeroC.getText();
-        String strEspecialidad = (String) cmbEspedialidad.getSelectedItem();
-        int    intEstado = cmbEstado.getSelectedIndex();
-        
-        //objDoctor = new Doctor(-1, intConsultorio, strEspecialidad, intEstado, strNombre, strApellidos);
-        //objFacade.Dotores(-1, intConsultorio, strEspecialidad, intEstado, strNombre, strApellidos);
-        
-        if ((intName == 0) || (intNumeroC == 0)|| (intApellido == 0)) {
+        String strEspecialidad = cmbEspedialidad.getSelectedItem().toString();
+        int intEstado = cmbEstado.getSelectedIndex();
+
+        if ((intName == 0) || (intNumeroC == 0) || (intApellido == 0)) {
             JOptionPane.showMessageDialog(null, "ERROR, NO ESTAN LLENOS TODO LOS REQUISITOS");
-        }else{
+        } else {
             ManejadorBL.InsertarCatalogoObjeto(objFacade.Dotores(-1, intConsultorio, strEspecialidad, intEstado, strNombre, strApellidos));
             JOptionPane.showMessageDialog(null, "DATOS CORRECTAMENTE GUARDADOS");
             limpiar();
         }
-    }
-    
-    /*public void Consultar(){
-        ArrayList<Doctor>lstDoctor = ManejadorBL.ConsultarCatalogo();
-        lstDoctor.forEach((doctor) -> {
-            System.out.println(doctor.getStrNombre()+ doctor.getStrApellido()+ 
-                    doctor.getStrNumeroConsultorio()+ doctor.getStrEspecialidad()+ doctor.getIntEstado());
-        });
-    }*/
-    // </editor-fold>
-    
-     // <editor-fold defaultstate="collapsed" desc="Cargar Combo box Base de datos">  
+    }// </editor-fold>
+
+    // <editor-fold defaultstate="collapsed" desc="Cargar Combo box Base de datos">  
     public void CagarComboCatalogo() {
         DefaultComboBoxModel cmbModel = new DefaultComboBoxModel();
         ArrayList<Especialidades> lstEspecialidades = new ArrayList<>();
         lstEspecialidades = ManejadorBLEs.ConsultarCatalogo();
-        
+
         for (Especialidades catalogo : lstEspecialidades) {
             Especialidades objCatalogo = new Especialidades(catalogo.getIntIdEspecialiadades(), catalogo.getStrNombre());
             cmbModel.addElement(objCatalogo);
@@ -309,8 +280,7 @@ public class frmResgistodoctor extends javax.swing.JFrame {
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         Insertar();
-        //Consultar();
-      
+
     }//GEN-LAST:event_btEntrarActionPerformed
 
     private void txtNameDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameDKeyTyped
@@ -339,7 +309,7 @@ public class frmResgistodoctor extends javax.swing.JFrame {
 
     private void cmbEspedialidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbEspedialidadMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_cmbEspedialidadMouseClicked
 
     private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
@@ -348,7 +318,7 @@ public class frmResgistodoctor extends javax.swing.JFrame {
         validar.ForzarMayusculas(evt);
     }//GEN-LAST:event_txtApellidoKeyTyped
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btEntrar;
     private javax.swing.JButton btlimpiar;

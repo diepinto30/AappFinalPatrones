@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 
 import Clases.Cita;
 import Clases.Doctor;
 import Clases.Paciente;
+import Clases.classFacade;
 import Validaciones.Validaciones;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,6 +22,7 @@ public class frmResgistrocita extends javax.swing.JFrame {
     BL.BLDoctor ManejadorBLDoc = new BL.BLDoctor();
     BL.BLPaciente ManejadorBLPa = new BL.BLPaciente();
     Validaciones validar = new Validaciones();
+    classFacade objFacade = objFacade = new classFacade();
     int intIdCatalogo = 0;
 
     public frmResgistrocita() throws ClassNotFoundException, SQLException {
@@ -85,41 +82,53 @@ public class frmResgistrocita extends javax.swing.JFrame {
         cmbHora = new javax.swing.JComboBox<>();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 51));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         strApellidos.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
         strApellidos.setText("Fecha de la cita:");
+        getContentPane().add(strApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 420, -1, 20));
 
         strUsername.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
         strUsername.setText("Hora:");
+        getContentPane().add(strUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 550, -1, 20));
 
         btLimpiar.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
-        btLimpiar.setText("limpiar");
+        btLimpiar.setText("Limpiar");
         btLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLimpiarActionPerformed(evt);
             }
         });
+        getContentPane().add(btLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 610, -1, 40));
 
         btEnviar.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
-        btEnviar.setText("Enviar");
+        btEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Save_37110.png"))); // NOI18N
+        btEnviar.setText(" Guardar");
         btEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEnviarActionPerformed(evt);
             }
         });
+        getContentPane().add(btEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 600, -1, 50));
 
         jLabel2.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
         jLabel2.setText("Medico Tratante:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 90, -1, 20));
 
         txtDoctor.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
+        getContentPane().add(txtDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 130, 188, 30));
 
         srtCelular.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
         srtCelular.setText("Paciente:");
+        getContentPane().add(srtCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, -1, 20));
 
         txtPaciente.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
+        getContentPane().add(txtPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 260, 180, 30));
 
         jTable1.setFont(new java.awt.Font("OCR A Std", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -140,6 +149,9 @@ public class frmResgistrocita extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 123, -1, 162));
+        getContentPane().add(lblRessultado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(967, 536, -1, -1));
+
         jTable2.setFont(new java.awt.Font("OCR A Std", 0, 12)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -159,7 +171,11 @@ public class frmResgistrocita extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable2);
 
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 368, -1, 156));
+
+        strId.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
         strId.setText("Id de la Cita:");
+        getContentPane().add(strId, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 340, -1, 20));
 
         txtId.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
         txtId.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -167,11 +183,14 @@ public class frmResgistrocita extends javax.swing.JFrame {
                 txtIdKeyTyped(evt);
             }
         });
+        getContentPane().add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 330, 75, 30));
 
         jLabel3.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
         jLabel3.setText("Consultorio:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 190, -1, 20));
 
         txtConsultorio.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
+        getContentPane().add(txtConsultorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 180, 42, 30));
 
         jButton1.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/x-mark-hi.png"))); // NOI18N
@@ -186,6 +205,7 @@ public class frmResgistrocita extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 660, -1, 40));
 
         jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(102, 255, 102));
@@ -198,14 +218,17 @@ public class frmResgistrocita extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, 30));
 
         jbtActualizar.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
+        jbtActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/reportbaby-iconos-04.png"))); // NOI18N
         jbtActualizar.setText("Actualizar Listas");
         jbtActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtActualizarActionPerformed(evt);
             }
         });
+        getContentPane().add(jbtActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 554, -1, -1));
 
         cmbDia.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
         cmbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
@@ -214,31 +237,39 @@ public class frmResgistrocita extends javax.swing.JFrame {
                 cmbDiaActionPerformed(evt);
             }
         });
+        getContentPane().add(cmbDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 490, -1, 30));
 
         jLabel1.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
         jLabel1.setText("Día:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 460, -1, 20));
 
         jLabel4.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
         jLabel4.setText("Mes:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 460, -1, 20));
 
         cmbMes.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
         cmbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC" }));
+        getContentPane().add(cmbMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 490, -1, 30));
 
         cmbAnia.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
         cmbAnia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2017", "2018" }));
+        getContentPane().add(cmbAnia, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 490, -1, 30));
 
         jLabel5.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
         jLabel5.setText("Año:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 460, -1, 20));
 
         cmbHora.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
         cmbHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mañana", "08h00", "08h30", "09h00", "09h30", "10h30", "11h00", "11h30", "12h00", "Trade", "14h00", "14h30", "15h00", "15h30", "16h00", "16h30", "17h00", "17h30", "18h00", "18h30", "19h00" }));
+        getContentPane().add(cmbHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 550, 103, 30));
 
         jTextField2.setEditable(false);
         jTextField2.setBackground(new java.awt.Color(102, 102, 255));
         jTextField2.setFont(new java.awt.Font("OCR A Std", 1, 24)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField2.setText("REGISTRAR CITAS");
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, 970, 64));
 
         jTextField3.setEditable(false);
         jTextField3.setBackground(new java.awt.Color(255, 204, 51));
@@ -251,146 +282,17 @@ public class frmResgistrocita extends javax.swing.JFrame {
                 jTextField3ActionPerformed(evt);
             }
         });
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 81, -1, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel2)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(strApellidos)
-                                .addComponent(srtCelular)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(cmbDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(strUsername))
-                                    .addGap(35, 35, 35)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cmbMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel4))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5)
-                                        .addComponent(cmbAnia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(67, 67, 67)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btEnviar)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(8, 8, 8)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(cmbHora, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(strId)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(btLimpiar, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(47, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lblRessultado1)
-                        .addContainerGap())
-                    .addComponent(jTextField2)))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addComponent(jbtActualizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(127, 127, 127))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(47, 47, 47)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(669, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
-                        .addComponent(lblRessultado1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbtActualizar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                        .addComponent(srtCelular)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(strId, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
-                        .addComponent(strApellidos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbAnia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(strUsername)
-                        .addGap(4, 4, 4)
-                        .addComponent(cmbHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btLimpiar)
-                            .addComponent(btEnviar))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(20, 20, 20))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(109, 109, 109)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(466, Short.MAX_VALUE)))
-        );
+        jTextField4.setEditable(false);
+        jTextField4.setBackground(new java.awt.Color(102, 102, 255));
+        jTextField4.setFont(new java.awt.Font("OCR A Std", 1, 24)); // NOI18N
+        jTextField4.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, 620));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/citas.png"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -462,19 +364,17 @@ public class frmResgistrocita extends javax.swing.JFrame {
         strFecha = strFecha.format(dia + "/" + mes + "/" + anio);
         String hora = (String) cmbHora.getSelectedItem();
 
-        Cita objCitas;
         String strIdCita = txtId.getText();
         String strNombreMe = txtDoctor.getText();
         String strConsultorio = txtConsultorio.getText();
         String strNombrePaciente = txtPaciente.getText();
 
-        objCitas = new Cita(-1, strIdCita, strFecha, hora, strNombreMe, strConsultorio, strNombrePaciente);
         
 
         if ((intPacientes == 0) || (intDoctor == 0)) {
             JOptionPane.showMessageDialog(null, "ERROR, NO ESTAN LLENOS TODO LOS REQUISITOS");
         } else {
-            ManejadorBL.InsertarCatalogoObjeto(objCitas);
+            ManejadorBL.InsertarCatalogoObjeto(objFacade.Citas(-1, strIdCita, strFecha, hora, strNombreMe, strConsultorio, anio));
             JOptionPane.showMessageDialog(null, "La cita a sido Registrada");
             limpiar();
         }
@@ -585,6 +485,7 @@ public class frmResgistrocita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
@@ -592,6 +493,7 @@ public class frmResgistrocita extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JButton jbtActualizar;
     private javax.swing.JLabel lblRessultado1;
     private javax.swing.JLabel srtCelular;

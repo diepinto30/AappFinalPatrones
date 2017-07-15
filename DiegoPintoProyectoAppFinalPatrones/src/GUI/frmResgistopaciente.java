@@ -1,19 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 
-
 import Validaciones.Validaciones;
-import java.io.IOException;
-import java.util.ArrayList;
-import BL.BLDoctor;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import Clases.Paciente;
+import Clases.classFacade;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,10 +12,10 @@ import javax.swing.JOptionPane;
 public class frmResgistopaciente extends javax.swing.JFrame {
 
     BL.BLPaciente ManejadorBL = new BL.BLPaciente();
-    Validaciones validar=new Validaciones ();
+    Validaciones validar = new Validaciones();
+    classFacade objFacade = objFacade = new classFacade();
     int intIdCatalogo = 0;
-    
-    
+
     public frmResgistopaciente() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -85,7 +74,8 @@ public class frmResgistopaciente extends javax.swing.JFrame {
         });
 
         btEntrar.setFont(new java.awt.Font("OCR A Std", 0, 13)); // NOI18N
-        btEntrar.setText("Enviar");
+        btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Save_37110.png"))); // NOI18N
+        btEntrar.setText(" Guardar");
         btEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEntrarActionPerformed(evt);
@@ -140,7 +130,7 @@ public class frmResgistopaciente extends javax.swing.JFrame {
 
         jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(0, 255, 0));
-        jTextField1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("OCR A Std", 1, 24)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(51, 51, 51));
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("REGISTRAR PACIENTES");
@@ -206,13 +196,16 @@ public class frmResgistopaciente extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtIdentifacion, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 25, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(119, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addGap(42, 42, 42)
-                        .addComponent(btlimpiar)
-                        .addGap(127, 127, 127)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(262, 262, 262))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btlimpiar)
+                                .addGap(95, 95, 95)))
                         .addComponent(btEntrar)
                         .addGap(158, 158, 158)
                         .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -292,7 +285,7 @@ public class frmResgistopaciente extends javax.swing.JFrame {
                             .addComponent(btEntrar))))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
@@ -306,11 +299,10 @@ public class frmResgistopaciente extends javax.swing.JFrame {
         txtIdentifacion.setText("");
         txtAnio.setText("");
     }// </editor-fold> 
-    
+
     // <editor-fold defaultstate="collapsed" desc="Validar y Guardar los datos">  
     public void Validar() {
-        
-        
+
         int anio = Integer.parseInt(txtAnio.getText());
         String mes = (String) cmbMes.getSelectedItem();
         int meses = 0;
@@ -350,13 +342,13 @@ public class frmResgistopaciente extends javax.swing.JFrame {
         if (mes.equals("Diciembre")) {
             meses = 12;
         }
-        
+
         Calendar today = Calendar.getInstance();
-        
+
         int diff_year = today.get(Calendar.YEAR) - anio;
         int diff_month = today.get(Calendar.MONTH) - meses;
-        
-        if((diff_month < 0) ||(diff_month==0)){
+
+        if ((diff_month < 0) || (diff_month == 0)) {
             diff_year = diff_year - 1;
         }
         txtEdad.setText(String.valueOf(diff_year));
@@ -366,22 +358,17 @@ public class frmResgistopaciente extends javax.swing.JFrame {
         int intIdenticacion = txtIdentifacion.getText().length();
         int intEad = txtAnio.getText().length();
         int intDireccion = txtDreccion.getText().length();
-        
-        
-        Paciente objPaciente;
+
         String strNombre = txtNameP.getText();
         String strApellidos = txtApellidos.getText();
         String strIdentifacion = txtIdentifacion.getText();
         String intEdad = txtEdad.getText();
         String strDireccion = txtDreccion.getText();
-        
-        objPaciente = new Paciente(-1, strNombre, strApellidos, strIdentifacion, intEdad, strDireccion);
-        
-        
-        if ((intName == 0) || (intApellido== 0)|| (intIdenticacion == 0)|| (intEad == 0)|| (intDireccion == 0)) {
+
+        if ((intName == 0) || (intApellido == 0) || (intIdenticacion == 0) || (intEad == 0) || (intDireccion == 0)) {
             JOptionPane.showMessageDialog(null, "ERROR, NO ESTAN LLENOS TODO LOS REQUISITOS");
-        }else{
-            ManejadorBL.InsertarCatalogoObjeto(objPaciente);
+        } else {
+            ManejadorBL.InsertarCatalogoObjeto(objFacade.Pacientes(-1, strNombre, strApellidos, strIdentifacion, strDireccion, intEdad));
             JOptionPane.showMessageDialog(null, "DATOS CORRECTAMENTE GUARDADOS");
             limpiar();
         }
@@ -437,7 +424,7 @@ public class frmResgistopaciente extends javax.swing.JFrame {
 
     private void txtApellidosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosKeyPressed
         // TODO add your handling code here:
-     
+
     }//GEN-LAST:event_txtApellidosKeyPressed
 
     private void txtAnioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnioKeyPressed
@@ -449,7 +436,6 @@ public class frmResgistopaciente extends javax.swing.JFrame {
         validar.ValidarCaracteres(evt);
         validar.ForzarMayusculas(evt);
     }//GEN-LAST:event_txtApellidosKeyTyped
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
