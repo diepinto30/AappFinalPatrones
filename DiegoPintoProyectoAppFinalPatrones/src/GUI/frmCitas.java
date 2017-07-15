@@ -6,6 +6,7 @@
 package GUI;
 
 import Clases.Cita;
+import Clases.classFacade;
 import Validaciones.Validaciones;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class frmCitas extends javax.swing.JFrame {
 
     BL.BLCitas ManejadorBL = new BL.BLCitas();
     Validaciones validar = new Validaciones();
+    classFacade objFacade = objFacade = new classFacade();
     
     public frmCitas() throws ClassNotFoundException, SQLException {
         
@@ -49,13 +51,14 @@ public class frmCitas extends javax.swing.JFrame {
     public void CargavaloresCitas() throws ClassNotFoundException, SQLException {
         //Como el método de la BL retorna un ArrayList de la clase Estudiantes
         //Aqui lo recuperamos
-        ArrayList<Cita> lstCitas = ManejadorBL.ConsultarCatalogo();
+        
+        ArrayList<Cita>lstFacCitas = ManejadorBL.ConsultarCatalogo();
 
         Object columnas[] = {"Id Cita","Paciente", "Medico", "Consultorio", "Fecha de la consulta", "Hora"};
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
         jTable1.setModel(modelo);
 
-        for (Cita objeto : lstCitas) {
+        for (Cita objeto : lstFacCitas) {
             //String id = String.valueOf(objeto.getIntId());
             String strNombreP=String.valueOf(objeto.getPaciente());
             String strNombreM=String.valueOf( objeto.getNombreD());

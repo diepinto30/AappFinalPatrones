@@ -14,5 +14,28 @@ public class classFacade {
         persona = new Persona();
     }
     
+    // metodo de la clase persona
+    public Persona Person(String strNombres, String strApellidos){
+        return  persona = new Persona(strNombres, strApellidos);
+    }
     
+    // metodo de la clase citas
+    public Cita Citas(int intId, String intIdCita, String fecha, String hora, String nombreD, String Consultorio, String paciente){
+        return  citas = new Cita(intId, intIdCita, fecha, hora, nombreD, Consultorio, paciente);
+    }
+    
+    // metodo de la clase doctores
+    public Doctor Dotores(int idDoctor, String strNumeroConsultorio, String strEspecialidad, int intEstado, String strNombres, String strApellidos){
+        return  doctores = new Doctor(idDoctor, strNumeroConsultorio, strEspecialidad, intEstado, strNombres, strApellidos);
+    }
+    
+    // metodo de la clase pacientes
+    public Paciente Pacientes(int intId, String strIdentifacion, String strDireccion, String intEdad, String strNombres, String strApellidos){
+        return pacientes = new Paciente(intId, strIdentifacion, strDireccion, intEdad, strNombres, strApellidos);
+    }
+    
+    // metodo de la clase especialidades
+    public Especialidades Especialidades(int intIdEspecialiadades, String strNombre){
+        return  especialidades = new Especialidades(intIdEspecialiadades, strNombre);
+    }
 }

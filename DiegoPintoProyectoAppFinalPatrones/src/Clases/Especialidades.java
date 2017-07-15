@@ -30,4 +30,9 @@ public class Especialidades {
         this.strNombre = strNombre;
     }
 
+    @Override
+    public String toString() {
+        return strNombre;
+    }
+
 }

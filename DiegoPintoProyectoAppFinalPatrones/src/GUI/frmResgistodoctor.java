@@ -10,6 +10,7 @@ import Clases.Doctor;
 import java.util.ArrayList;
 import BL.BLDoctor;
 import Clases.Especialidades;
+import Clases.classFacade;
 import javax.swing.JOptionPane;
 import Validaciones.Validaciones;
 import java.sql.SQLException;
@@ -29,6 +30,7 @@ public class frmResgistodoctor extends javax.swing.JFrame {
     BL.BLDoctor ManejadorBL = new BL.BLDoctor();
      BL.BLEspecialidades ManejadorBLEs = new BL.BLEspecialidades();
     Validaciones validar=new Validaciones ();
+    classFacade objFacade = objFacade = new classFacade();
     int intIdCatalogo = 0;
     
     public frmResgistodoctor() throws SQLException, ClassNotFoundException {
@@ -250,20 +252,20 @@ public class frmResgistodoctor extends javax.swing.JFrame {
         int intNumeroC = txtNumeroC.getText().length();
         int intApellido= txtApellido.getText().length();
         
-        Doctor objDoctor;
+        
         String strNombre = txtNameD.getText();
         String strApellidos = txtApellido.getText();
         String intConsultorio = txtNumeroC.getText();
         String strEspecialidad = (String) cmbEspedialidad.getSelectedItem();
         int    intEstado = cmbEstado.getSelectedIndex();
         
-        objDoctor = new Doctor(-1, intConsultorio, strEspecialidad, intEstado, strNombre, strApellidos);
-        
+        //objDoctor = new Doctor(-1, intConsultorio, strEspecialidad, intEstado, strNombre, strApellidos);
+        //objFacade.Dotores(-1, intConsultorio, strEspecialidad, intEstado, strNombre, strApellidos);
         
         if ((intName == 0) || (intNumeroC == 0)|| (intApellido == 0)) {
             JOptionPane.showMessageDialog(null, "ERROR, NO ESTAN LLENOS TODO LOS REQUISITOS");
         }else{
-            ManejadorBL.InsertarCatalogoObjeto(objDoctor);
+            ManejadorBL.InsertarCatalogoObjeto(objFacade.Dotores(-1, intConsultorio, strEspecialidad, intEstado, strNombre, strApellidos));
             JOptionPane.showMessageDialog(null, "DATOS CORRECTAMENTE GUARDADOS");
             limpiar();
         }
