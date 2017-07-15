@@ -1,17 +1,17 @@
-
 package Clases;
 
-/**
- *
- * @author diego
- */
 public class Persona {
+
     private String strNombres;
     private String strApellidos;
 
     public Persona(String strNombres, String strApellidos) {
         this.strNombres = strNombres;
         this.strApellidos = strApellidos;
+    }
+
+    public Persona() {
+
     }
 
     public String getStrNombres() {
@@ -29,6 +29,5 @@ public class Persona {
     public void setStrApellidos(String strApellidos) {
         this.strApellidos = strApellidos;
     }
-    
-    
+
 }

@@ -1,20 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Clases;
 
-/**
- *
- * @author diego
- */
 public class Paciente extends Persona {
-    
+
     int intId;
     String strIdentifacion;
     String strDireccion;
     String intEdad;
+
+    public Paciente() {
+
+    }
 
     public Paciente(int intId, String strIdentifacion, String strDireccion, String intEdad, String strNombres, String strApellidos) {
         super(strNombres, strApellidos);
