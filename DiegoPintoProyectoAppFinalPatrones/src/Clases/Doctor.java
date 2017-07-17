@@ -17,8 +17,6 @@ public class Doctor extends Persona {
         this.strEspecialidad = strEspecialidad;
         this.intEstado = intEstado;
     }
-    
-    
 
     public int getIdDoctor() {
         return idDoctor;
@@ -51,7 +49,10 @@ public class Doctor extends Persona {
     public void setIntEstado(int intEstado) {
         this.intEstado = intEstado;
     }
+    
+    
 
+    
     @Override
     public String toString() {
         return strEspecialidad;

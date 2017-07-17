@@ -258,7 +258,7 @@ public class frmResgistodoctor extends javax.swing.JFrame {
         lstEspecialidades = ManejadorBLEs.ConsultarCatalogo();
 
         for (Especialidades catalogo : lstEspecialidades) {
-            Especialidades objCatalogo = new Especialidades(catalogo.getIntIdEspecialiadades(), catalogo.getStrNombre());
+            Especialidades objCatalogo = new Especialidades(catalogo.getIntIdEspe(), catalogo.getStrNombre());
             cmbModel.addElement(objCatalogo);
             cmbEspedialidad.setModel(cmbModel);
         }
