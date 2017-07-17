@@ -8,10 +8,10 @@ public class DAOConexion {
     
     protected Connection con;//obj tipo Conecction
     
-    private String driver="com.mysql.jdbc.Driver";
-    private String user="root";
-    private String password="";
-    private String url="jdbc:mysql://localhost:3306/CentroMedicoDiego";
+    private final String driver="com.mysql.jdbc.Driver";
+    private final String user="root";
+    private final String password="";
+    private final String url="jdbc:mysql://localhost:3306/CentroMedicoDiego";
     
     public Connection getConnection () throws SQLException, ClassNotFoundException{
         

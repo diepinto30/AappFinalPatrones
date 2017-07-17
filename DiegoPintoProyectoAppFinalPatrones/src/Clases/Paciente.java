@@ -11,7 +11,7 @@ public class Paciente extends Persona {
 
     }
 
-    public Paciente(int intId, String strIdentifacion, String strDireccion, String intEdad, String strNombres, String strApellidos) {
+    public Paciente(int intId, String strNombres, String strApellidos, String strIdentifacion, String strDireccion, String intEdad) {
         super(strNombres, strApellidos);
         this.intId = intId;
         this.strIdentifacion = strIdentifacion;
@@ -19,6 +19,7 @@ public class Paciente extends Persona {
         this.intEdad = intEdad;
     }
 
+    
     public int getIntId() {
         return intId;
     }

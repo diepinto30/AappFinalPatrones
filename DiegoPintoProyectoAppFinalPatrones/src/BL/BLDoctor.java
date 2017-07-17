@@ -37,7 +37,7 @@ public class BLDoctor
                 String intNumConsultorio = rs.getString("NumConsultorio");
                 String strEspecialidad = rs.getString("Especialidad");
                 int    intEstado = rs.getInt("Estado");
-                Doctor objDoctor = new Doctor(intIdCatalogo, intNumConsultorio, strEspecialidad, intEstado,strNombres, strApellidos);
+                Doctor objDoctor = new Doctor(intIdCatalogo, strNombres, strApellidos, intNumConsultorio, strEspecialidad, intEstado);
                 lstDoctor.add(objDoctor);
             }
         }

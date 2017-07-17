@@ -25,8 +25,8 @@ public class classFacade {
     }
     
     // metodo de la clase doctores
-    public Doctor Dotores(int idDoctor, String strNumeroConsultorio, String strEspecialidad, int intEstado, String strNombres, String strApellidos){
-        return  doctores = new Doctor(idDoctor, strNumeroConsultorio, strEspecialidad, intEstado, strNombres, strApellidos);
+    public Doctor Dotores(int idDoctor, String strNombres, String strApellidos, String strNumeroConsultorio, String strEspecialidad, int intEstado){
+        return  doctores = new Doctor(idDoctor, strNombres, strApellidos, strNumeroConsultorio, strEspecialidad, intEstado);
     }
     
     // metodo de la clase pacientes

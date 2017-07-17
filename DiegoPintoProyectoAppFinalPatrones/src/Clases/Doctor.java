@@ -10,13 +10,15 @@ public class Doctor extends Persona {
         
     }
     
-    public Doctor(int idDoctor, String strNumeroConsultorio, String strEspecialidad, int intEstado, String strNombres, String strApellidos) {
+    public Doctor(int idDoctor, String strNombres, String strApellidos, String strNumeroConsultorio, String strEspecialidad, int intEstado) {
         super(strNombres, strApellidos);
         this.idDoctor = idDoctor;
         this.strNumeroConsultorio = strNumeroConsultorio;
         this.strEspecialidad = strEspecialidad;
         this.intEstado = intEstado;
     }
+
+    
 
     public int getIdDoctor() {
         return idDoctor;
