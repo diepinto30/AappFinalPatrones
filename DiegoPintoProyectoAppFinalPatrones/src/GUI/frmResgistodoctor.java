@@ -15,7 +15,7 @@ public class frmResgistodoctor extends javax.swing.JFrame {
     BL.BLDoctor ManejadorBL = new BL.BLDoctor();
     BL.BLEspecialidades ManejadorBLEs = new BL.BLEspecialidades();
     Validaciones validar = new Validaciones();
-    classFacade objFacade = objFacade = new classFacade();
+    classFacade objFacade = new classFacade();
     DAOInterfaces.DAODoctor MJDDAODoctor = new DAO.DAODoctorImpl();
     
     int intIdCatalogo = 0;

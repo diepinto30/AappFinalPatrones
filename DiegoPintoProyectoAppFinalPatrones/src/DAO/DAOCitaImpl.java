@@ -57,7 +57,7 @@ public class DAOCitaImpl extends DAOConexion implements DAOInterfaces.DAOCita {
                 String strNombreMedico = rs.getString("NombreMedico");
                 String strConsultorio= rs.getString("Consultorio");
                 String strNombrePaciente = rs.getString("NombrePaciente");
-                objCita = new Cita(intIdCatalogo, strIdCitas, strFecha, strHora, strHora, strConsultorio, strFecha);
+                objCita = new Cita(intIdCatalogo, strIdCitas, strFecha, strHora, strNombreMedico, strConsultorio, strNombrePaciente);
             }
             pst.close();
             rs.close();
