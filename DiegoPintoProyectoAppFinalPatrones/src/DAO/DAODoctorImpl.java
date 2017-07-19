@@ -1,6 +1,7 @@
 package DAO;
 
 import Clases.Doctor;
+import Clases.Especialidades;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -56,6 +57,4 @@ public class DAODoctorImpl extends DAOConexion implements DAOInterfaces.DAODocto
             System.err.println(ex.getMessage());
         }
     }
-
-
 }

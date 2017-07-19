@@ -16,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frmCitas extends javax.swing.JFrame {
 
-    BL.BLCitas ManejadorBL = new BL.BLCitas();
     Validaciones validar = new Validaciones();
     DAOInterfaces.DAOCita MJDDAOCita = new DAO.DAOCitaImpl();
     classFacade objFacade = new classFacade();

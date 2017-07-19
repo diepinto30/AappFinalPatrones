@@ -12,11 +12,10 @@ import javax.swing.DefaultComboBoxModel;
 
 public class frmResgistodoctor extends javax.swing.JFrame {
 
-    BL.BLDoctor ManejadorBL = new BL.BLDoctor();
-    BL.BLEspecialidades ManejadorBLEs = new BL.BLEspecialidades();
     Validaciones validar = new Validaciones();
     classFacade objFacade = new classFacade();
     DAOInterfaces.DAODoctor MJDDAODoctor = new DAO.DAODoctorImpl();
+    DAOInterfaces.DAOEspecialidades MJDDAOEspe = new DAO.DAOEspecialidadImpl();
     
     int intIdCatalogo = 0;
 
@@ -251,7 +250,11 @@ public class frmResgistodoctor extends javax.swing.JFrame {
     public void CagarComboCatalogo() {
         DefaultComboBoxModel cmbModel = new DefaultComboBoxModel();
         ArrayList<Especialidades> lstEspecialidades = new ArrayList<>();
-        lstEspecialidades = ManejadorBLEs.ConsultarCatalogo();
+        try {
+            lstEspecialidades = MJDDAOEspe.Select();
+        } catch (Exception ex) {
+            Logger.getLogger(frmResgistodoctor.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         for (Especialidades catalogo : lstEspecialidades) {
             Especialidades objCatalogo = new Especialidades(catalogo.getIntIdEspe(), catalogo.getStrNombre());

@@ -39,8 +39,5 @@ public class classFacade {
         return pacientes = new Paciente(intId, strIdentifacion, strDireccion, intEdad, strNombres, strApellidos);
     }
     
-    // metodo de la clase especialidades
-    public Especialidades Especialidades(int intIdEspecialiadades, String strNombre){
-        return  especialidades = new Especialidades(intIdEspecialiadades, strNombre);
-    }
+    
 }
