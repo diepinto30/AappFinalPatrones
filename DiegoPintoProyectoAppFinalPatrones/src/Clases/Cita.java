@@ -23,6 +23,14 @@ public class Cita {
     public Cita() {
 
     }
+    
+    public Cita(String strIdCita, String strFecha, String strHora, String strMedico, String strConsultorio) {
+        this.intIdCita = intIdCita;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.nombreD = nombreD;
+        this.Consultorio = Consultorio;
+    }
 
     public int getIntId() {
         return intId;

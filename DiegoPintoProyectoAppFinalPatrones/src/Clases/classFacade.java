@@ -24,6 +24,11 @@ public class classFacade {
         return  citas = new Cita(intId, intIdCita, fecha, hora, nombreD, Consultorio, paciente);
     }
     
+    // metodo de la clase citas
+    public Cita Citas2(String strIdCita, String strFecha, String strHora, String strMedico, String strConsultorio){
+        return  citas = new Cita(strIdCita, strFecha, strHora, strMedico, strConsultorio);
+    }
+    
     // metodo de la clase doctores
     public Doctor Dotores(int idDoctor, String strNombres, String strApellidos, String strNumeroConsultorio, String strEspecialidad, int intEstado){
         return  doctores = new Doctor(idDoctor, strNombres, strApellidos, strNumeroConsultorio, strEspecialidad, intEstado);

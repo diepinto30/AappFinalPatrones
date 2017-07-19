@@ -10,8 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -41,11 +39,11 @@ public class DAOCitaImpl extends DAOConexion implements DAOInterfaces.DAOCita {
     }
 
     @Override
-    public ArrayList<Cita> Select() throws Exception {
-        ArrayList<Cita> lstCita = new ArrayList<>();
+    public ArrayList<Cita> Select() {
+        ArrayList<Cita> lstCita = null;
         
         try{
-            
+            lstCita = new ArrayList<>();
             PreparedStatement pst = this.AbrirConexion().prepareStatement("SELECT * FROM CitasMedicas");
             ResultSet rs = pst.executeQuery();
             while(rs.next()){
@@ -58,15 +56,53 @@ public class DAOCitaImpl extends DAOConexion implements DAOInterfaces.DAOCita {
                 String strConsultorio= rs.getString("Consultorio");
                 String strNombrePaciente = rs.getString("NombrePaciente");
                 objCita = new Cita(intIdCatalogo, strIdCitas, strFecha, strHora, strNombreMedico, strConsultorio, strNombrePaciente);
+                lstCita.add(objCita);
             }
             pst.close();
             rs.close();
-        }
+       }
         catch(ClassNotFoundException | SQLException ex)
         {
             System.err.println(ex.getMessage());
         }
         return lstCita;   
     }
+
+    public void Update(String strIdCita, String strFecha, String strHora, String strMedico, String strConsultorio){
+        try {
+            String strSQL ="UPDATE CitasMedicas SET  Fecha = ?, Hora = ?, NombreMedico = ?,"
+                    + "Consultorio = ? WHERE idCita ="+strIdCita;
+
+            PreparedStatement pst = this.AbrirConexion().prepareStatement(strSQL);
+            pst.setString(1, strFecha);
+            pst.setString(2, strHora);
+            pst.setString(3, strMedico);
+            pst.setString(4, strConsultorio);
+            pst.executeUpdate();
+            pst.close();
+            this.CerrarConexion();
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    public boolean Delete(String intEliminar) {
+        PreparedStatement st = null;
+        
+        try{
+            
+            st = AbrirConexion().prepareStatement("DELETE FROM CitasMedicas WHERE idCita = ?");
+            st.setString(1, intEliminar);
+            st.executeUpdate();
+            st.close();
+            return true;
+        }
+        catch(Exception ex){
+            String msn = ex.getMessage();
+        }
+        return  false;
+    }
+    
+
     
 }
